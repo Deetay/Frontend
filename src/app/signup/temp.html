@@ -1,0 +1,129 @@
+<mat-card class="signup">
+  <mat-vertical-stepper [linear]="true" #stepper>
+
+    <mat-step [stepControl]="form1">
+      <form #form1="ngForm">
+        <ng-template matStepLabel>Logowanie</ng-template>
+
+        <mat-grid-list cols="1" rows="5" rowHeight="35px">
+
+          <mat-grid-tile rowspan="2">
+            <mat-form-field>
+              <input matInput [(ngModel)]="user.email" name="mail" required email #mailRef="ngModel" placeholder="Email" />
+              <mat-error *ngIf="mailRef.invalid">Wpisz poprawnego maila!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile rowspan="2">
+            <mat-form-field>
+              <input matInput type="password" [(ngModel)]="user.password" name="pass" required #passRef="ngModel" placeholder="Hasło"/>
+              <mat-error *ngIf="passRef.invalid">Wpisz poprawne hasło!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile rowspan="2">
+            <mat-form-field>
+              <input matInput type="password" [(ngModel)]="passConfirm" name="passConfirm" required #passConfirmRef="ngModel" placeholder="Potwierdź hasło"
+              />
+              <mat-error *ngIf="passConfirmRef.value != passRef.value">Wpisz poprawne hasło!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile rowspan="2">
+            <button mat-raised-button matStepperNext>
+              Dalej
+            </button>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="form2">
+      <ng-template matStepLabel>Użytkownik</ng-template>
+      <form #form2="ngForm">
+        <mat-grid-list cols="2" rows="2" rowHeight="35px">
+
+          <!-- <mat-grid-tile colspan="2" rowspan="2">
+            <mat-radio-group [(ngModel)]="userModel.gender">
+              <mat-radio-button value="male">Mężczyzna</mat-radio-button>
+              <mat-radio-button value="female">Kobieta</mat-radio-button>
+            </mat-radio-group>
+          </mat-grid-tile> -->
+
+          <mat-grid-tile colspan="2" rowspan="2">
+            <mat-form-field class="inline-form-field">
+              <input matInput  placeholder="Imię" />
+              <mat-error >Wpisz poprawne imię!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="2" rowspan="2">
+            <mat-form-field class="inline-form-field">
+              <input matInput placeholder="Nazwisko" />
+              <mat-error >Wpisz poprawne nazwisko!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="2" rowspan="2">
+            <mat-form-field>
+              <input matInput  placeholder="Data urodzenia" >
+              <mat-error >Wybierz datę!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="2" rowspan="2">
+            <mat-form-field>
+              <input matInput  placeholder="Numer telefonu"  />
+              <mat-error >Wpisz poprawny numer telefonu!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="2" rowspan="2">
+            <button mat-raised-button matStepperNext>
+              Dalej
+            </button>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+      </form>
+    </mat-step>
+    <mat-step optional="true" [stepControl]="form3">
+      <ng-template matStepLabel>Opcjonalne</ng-template>
+      <form #form3="ngForm">
+        <mat-grid-list cols="4" rows="10" rowHeight="35px">
+
+          <mat-grid-tile colspan="1" rowspan="2">
+
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="2" rowspan="2">
+            <mat-form-field>
+              <input matInput placeholder="Model samochodu" />
+              <mat-error>Wpisz poprawną nazwę samochodu!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="1" rowspan="2">
+
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="4" rowspan="6">
+            <mat-form-field style="width: 100% !important">
+              <textarea name="bio" matInput class=".textarea" rows="6" placeholder="Coś o sobie"></textarea>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="4" rowspan="2">
+            <button mat-raised-button type="submit" [disabled]="!form2.valid || !form1.valid" (click)="onSubmit()">
+              Zarejestruj
+            </button>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+
+      </form>
+    </mat-step>
+
+  </mat-vertical-stepper>
+</mat-card>
