@@ -1,0 +1,50 @@
+
+
+.welcome-text h1 {
+  margin-top: 150px;
+  margin-bottom: 250px;
+  color: #ffffff;
+  font-size: 4rem;
+
+}
+
+mat-card {
+  width: 70%;
+  border-radius: 25px;
+  margin: auto;
+}
+
+.centered {
+  display: flex;           /* establish flex container */
+  justify-content: center; /* center items vertically, in this case */
+  align-items: center;
+}
+
+.input-on-image {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 15px;
+  max-width: 240px;
+  max-height: 60px;
+  width: 100%;
+}
+
+.search-bar {
+  margin-top: 40px;
+}
+
+
+.btn-search {
+  border-radius: 10px;
+  max-width: 240px;
+  max-height: 70px;
+  margin: 15px;
+  padding-top: 20px;
+  padding-bottom: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 1.1rem;
+}
+
+

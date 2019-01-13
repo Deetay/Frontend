@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Oceń użytkownika</h2>
+
+<mat-dialog-content style="overflow: hidden">
+
+  <img class="img-circle" *ngIf="data.userPhoto" [src]="photo" width="100px" height="100px" />
+  <img class="img-circle" *ngIf="!data.userPhoto" src="../../../assets/avatar.svg" width="100px" height="100px" />
+
+  <div>
+    <h3>
+      {{data?.userData?.firstName}} {{data?.userData?.lastName}}
+    </h3>
+  </div>
+  <div>
+    1
+    <mat-icon class="star" [ngClass]="data?.userData?.rate > 0.5 ? 'rated' : 'unrated'" (click)="rateUser(1)">star_rate</mat-icon>
+    <mat-icon class="star" [ngClass]="data?.userData?.rate > 1.5 ? 'rated' : 'unrated'" (click)="rateUser(2)">star_rate</mat-icon>
+    <mat-icon class="star" [ngClass]="data?.userData?.rate > 2.5 ? 'rated' : 'unrated'" (click)="rateUser(3)">star_rate</mat-icon>
+    <mat-icon class="star" [ngClass]="data?.userData?.rate > 3.5 ? 'rated' : 'unrated'" (click)="rateUser(4)">star_rate</mat-icon>
+    <mat-icon class="star" [ngClass]="data?.userData?.rate > 4.5 ? 'rated' : 'unrated'" (click)="rateUser(5)">star_rate</mat-icon>
+    5
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions style="justify-content: center">
+  <button class="mat-raised-button" mat-dialog-close (click)="sendUserRate()">Oceń</button>
+</mat-dialog-actions>

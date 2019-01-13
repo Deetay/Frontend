@@ -1,0 +1,12 @@
+<div *ngIf="hasRides">
+  <app-ride *ngFor="let ride of rides" [rideData]="ride"></app-ride>
+</div>
+
+<div *ngIf="!hasRides">
+  <mat-card>
+    <br/>
+    <mat-card-title>Nie dodałeś jeszcze żadnego przejazdu </mat-card-title>
+    <br/>
+    <button mat-raised-button color="primary" routerLink="/addride">Dodaj przejazd</button>
+  </mat-card>
+</div>

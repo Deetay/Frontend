@@ -1,0 +1,112 @@
+<mat-card class="signup">
+  <mat-horizontal-stepper [linear]="true" #stepper>
+
+    <mat-step [stepControl]="form1">
+      <form #form1="ngForm">
+        <ng-template matStepLabel>Dane logowania</ng-template>
+        <mat-grid-list cols="1" rows="5" rowHeight="40px">
+          <form [formGroup]="registerForm" >
+
+            <mat-grid-tile class="form-group" rowspan="2">
+              <mat-form-field>
+                <input matInput placeholder="Email" type="email" required formControlName="email" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+                <mat-error *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <mat-error *ngIf="f.email.errors.required">Niepoprawny adres email</mat-error>
+                </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="form-group" rowspan="2">
+              <mat-form-field>
+                <input matInput placeholder="Hasło" type="password" required formControlName="password" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                <mat-error *ngIf="f.password.errors" class="invalid-feedback">
+                  <mat-error *ngIf="f.password.errors.required">Pole hasło jest wymagane</mat-error>
+                  <mat-error *ngIf="f.password.errors.minlength">Hasło musi mieć co najmniej 6 znaków</mat-error>
+                </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="form-group" rowspan="2">
+              <mat-form-field>
+                <input matInput placeholder="Imię" type="text" required formControlName="firstName" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"/>
+                <mat-error *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                  <mat-error *ngIf="f.firstName.errors.required">Pole imię jest wymagane</mat-error>
+                </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="form-group" rowspan="2">
+              <mat-form-field>
+                <input matInput placeholder="Nazwisko" type="text" formControlName="lastName" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"/>
+                <mat-error *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                  <mat-error *ngIf="f.lastName.errors.required">Pole nazwisko jest wymagane</mat-error>
+                </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="form-group" rowspan="2">
+              <div>
+                <button mat-raised-button matStepperNext>Dalej</button>
+              </div>
+              <button mat-raised-button [routerLink]="['/']" class="btn btn-link">Anuluj</button>
+            </mat-grid-tile>
+          </form>
+        </mat-grid-list>
+
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="form2">
+      <form #form2="ngForm">
+        <ng-template matStepLabel>Dodatkowe informacje</ng-template>
+        <mat-grid-list cols="1" rows="5" rowHeight="40px">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+            <mat-grid-tile class="form-group" rowspan="2">
+              <mat-form-field>
+                <input matInput placeholder="Data urodzenia" formControlName="birthDate" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors }"/>
+                <mat-error *ngIf="submitted && f.birthDate.errors" class="invalid-feedback">
+                  Proszę podać datę w formacie RRRR-MM-DD
+                </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="form-group" rowspan="2">
+              <mat-form-field>
+                <input matInput placeholder="Adres" type="text" formControlName="address" class="form-control"/>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="form-group" rowspan="2">
+              <mat-form-field>
+                <input matInput placeholder="Numer telefonu" type="text" formControlName="phone" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.phone.errors }"/>
+                <mat-error *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                  <mat-error *ngIf="f.phone.errors">Zly format numeru</mat-error>
+                </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="form-group" rowspan="2">
+              <mat-form-field>
+                <input matInput placeholder="Samochód" type="text" formControlName="car" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"/>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="form-group" rowspan="2">
+              <button mat-raised-button color="accent" [disabled]="loading" class="btn btn-primary">Zarejestruj</button>
+              <button mat-raised-button matStepperPrevious>Wstecz</button>
+              <mat-spinner *ngIf="loading" [diameter]="20" class="spinner"></mat-spinner>
+            </mat-grid-tile>
+          </form>
+        </mat-grid-list>
+
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>

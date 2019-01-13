@@ -1,0 +1,26 @@
+<div *ngIf="!showList && !foundNothing">
+<div class="welcome-text centered">
+  <h1>Podróżuj kiedy chcesz, gdziekolwiek jesteś.</h1>
+</div>
+<div class="row centered search-bar">
+  <app-city-search #fromCity [placeholder]="fromPlaceholder" class="input-on-image centered" (enterPressed)="onEnter()"></app-city-search>
+  <app-city-search #toCity [placeholder]="toPlaceholder" class="input-on-image centered" (enterPressed)="onEnter()"></app-city-search>
+
+  <mat-form-field class="input-on-image centered">
+    <input matInput [min]="today" [matDatepicker]="picker" placeholder="Kiedy?" form="date" >
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="search-btn-wrapper" >
+    <button class="btn-search" (click)="search(fromCity.selectedCity, toCity.selectedCity, toCity.selectedId)" mat-flat-button color="accent" >Szukaj prejazdu</button>
+  </div>
+</div>
+</div>
+<div *ngIf="showList" class="ride-list">
+  <app-ride-list [rides]="foundRides" ></app-ride-list>
+</div>
+<mat-card *ngIf="!showList && foundNothing">
+  <mat-card-title>Nie znaleziono żadnego przejazdu na wybranej trasie.</mat-card-title>
+  <button (click)="back()" mat-raised-button >Powrót</button>
+</mat-card>

@@ -1,0 +1,51 @@
+.center {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.signup{
+
+}
+.spinner{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.inline-form-field {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+mat-card {
+  width: 70%;
+  border-radius: 25px;
+  margin: auto;
+}
+.btn-link{
+margin: 25px;
+}
+.btn-primary{
+  margin: 25px;
+}
+
+mat-card:hover {
+  box-shadow: 0 10px 6px -6px grey;
+}
+
+mat-form-field {
+  width: 200px !important;
+}
+
+.textarea {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}

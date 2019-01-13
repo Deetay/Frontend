@@ -1,0 +1,138 @@
+<mat-card>
+  <h2 class="text-center">Dodaj przejazd: </h2>
+  <mat-vertical-stepper [linear]="true" #stepper>
+
+    <!-- window 1 -->
+    <mat-step [stepControl]="form1">
+      <form #form1="ngForm">
+        <ng-template matStepLabel>Dane przejazdu</ng-template>
+
+        <mat-grid-list cols="2" rows="14" rowHeight="35px">
+          <mat-grid-tile colspan="1" rowspan="2">
+            <mat-form-field>
+              <input matInput [(ngModel)]="rideModel.from.city" #searchBox name="from" required #fromRef="ngModel" placeholder="Miasto startowe"
+                                        [matAutocomplete]="auto" (keyup)="search(searchBox.value)" />
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let city of autoCities" [value]="city" >
+                  <span>{{ city.name}}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <mat-error *ngIf="fromRef.invalid">Wpisz poprawne miasto!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="1" rowspan="2">
+            <mat-form-field>
+              <input matInput [(ngModel)]="rideModel.to.city" #searchBox2 name="to" required #toRef="ngModel" placeholder="Miasto końcowe"
+                     [matAutocomplete]="auto" (keyup)="search(searchBox2.value)" />
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                <mat-option *ngFor="let city of autoCities" [value]="city" >
+                  <span>{{ city.name}}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <mat-error *ngIf="toRef.invalid">Wpisz poprawne miasto!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="1" rowspan="2">
+            <mat-form-field>
+              <input matInput [(ngModel)]="rideModel.from.placeInfo" name="fromStreet" required #fromStreetRef="ngModel" placeholder="Miejsce odjazdu"
+              />
+              <mat-error *ngIf="fromStreetRef.invalid">Wpisz poprawną nazwę!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="1" rowspan="2">
+            <mat-form-field>
+              <input matInput [(ngModel)]="rideModel.to.placeInfo" name="toStreet" required #toStreetRef="ngModel" placeholder="Miejsce przyjazdu"
+              />
+              <mat-error *ngIf="toStreetRef.invalid">Wpisz poprawną nazwę!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="1" rowspan="3">
+            <mat-form-field>
+              <input matInput name="dateFrom" [min]="today" [matDatepicker]="pickerFrom" required placeholder="Data odjazdu" #dateFromRef="ngModel"
+                     [(ngModel)]="rideModel.from.date">
+              <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFrom></mat-datepicker>
+              <mat-error *ngIf="dateFromRef.invalid">Wybierz datę!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+
+          <mat-grid-tile colspan="1" rowspan="3">
+            <mat-form-field>
+              <input matInput name="timeFrom" type="time" required placeholder="Godzina odjazdu" step="600" #fromTimeRef="ngModel" [(ngModel)]="timeModel.from">
+              <mat-error *ngIf="fromTimeRef.invalid">Wybierz godzinę odjazdu!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+
+          <mat-grid-tile colspan="2" rowspan="2">
+            <button mat-raised-button [disabled]="!form1.valid " matStepperNext>
+              Dalej
+            </button>
+          </mat-grid-tile>
+        </mat-grid-list>
+
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form #form2="ngForm">
+        <ng-template matStepLabel>Szczegóły przejazdu</ng-template>
+
+        <mat-grid-list cols="6" rows="12" rowHeight="35px">
+          <mat-grid-tile colspan="2" rowspan="2"> </mat-grid-tile>
+          <mat-grid-tile colspan="2" rowspan="2">
+
+            <mat-form-field>
+              <span matSuffix>zł</span>
+              <input matInput [(ngModel)]="rideModel.price" type="tel" name="price" required #priceRef="ngModel" placeholder="Cena" />
+              <mat-error *ngIf="priceRef.invalid">Wpisz poprawną cenę!</mat-error>
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="2" rowspan="2"> </mat-grid-tile>
+          <mat-grid-tile colspan="2" rowspan="2"> </mat-grid-tile>
+
+          <mat-grid-tile colspan="2" rowspan="2">
+            <mat-form-field>
+              <input matInput [(ngModel)]="rideModel.numberOfSeats" type="number" name="seats" required #seatsRef="ngModel" placeholder="Liczba miejsc"
+              />
+              <mat-error *ngIf="seatsRef.invalid">Wpisz poprawną liczbę miejsc!</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="2" rowspan="2"> </mat-grid-tile>
+
+          <mat-grid-tile colspan="6" rowspan="5">
+            <mat-form-field>
+                            <textarea rows="4" matInput [(ngModel)]="rideModel.description" name="description" #descRef="ngModel"
+                                      placeholder="Uwagi od kierowcy"></textarea>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="6" rowspan="2">
+            <button mat-raised-button type="submit" [disabled]="!form2.valid || !form1.valid" (click)="onSubmit() ">
+              Dodaj
+            </button>
+          </mat-grid-tile>
+
+          <mat-grid-tile colspan="2" rowspan="2">
+
+          </mat-grid-tile>
+
+        </mat-grid-list>
+
+        <div class="row center">
+          <mat-spinner class="spinner " [diameter]="40" [style.display]="showSpinner ? 'inline' : 'none' "></mat-spinner>
+        </div>
+
+        <!-- window 2 -->
+      </form>
+    </mat-step>
+  </mat-vertical-stepper>
+</mat-card>

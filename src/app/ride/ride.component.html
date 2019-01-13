@@ -1,0 +1,73 @@
+<mat-card>
+  <mat-grid-list cols="8" rows="5" rowHeight="33px" gutterSize="0px">
+    <mat-grid-tile colspan="3" rowspan="1">
+      <div class="align-vertically">
+        <h5>
+          <strong>{{userData?.firstName}} {{userData?.lastName}}</strong>
+        </h5>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="4" rowspan="1" class="border-bottom">
+      <h4>
+        <mat-icon class="icon-align">alarm</mat-icon>
+        <strong>{{rideData?.date | date:'EEEE, d MMMM  H:mm':'':'pl'}}</strong>
+      </h4>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="5">
+      <div class="show-on-hover">
+        <button *ngIf="userId != currentUser" mat-icon-button matTooltipShowDelay="100" matTooltip="Skontaktuj się" matTooltipPosition="right">
+          <mat-icon>phone_iphone</mat-icon>
+        </button>
+        <button *ngIf="userId != currentUser && canReserve()" mat-icon-button matTooltipShowDelay="100" matTooltip="Zarezerwuj" matTooltipPosition="right"
+                (click)="reserve()">
+          <mat-icon>content_paste</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Szczegóły" matTooltipPosition="right" (click)="redirectToRouteDetails()">
+          <mat-icon>info</mat-icon>
+        </button>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="3">
+      <a (click)="goToUserPage()" class="profile-hover">
+        <img class="img-circle" *ngIf="sanitizedPhoto" [src]="sanitizedPhoto" width="90px" height="90px" />
+        <img class="img-circle" *ngIf="!sanitizedPhoto" src="../../../assets/avatar.svg" width="100px" height="100px" />
+      </a>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="1">
+      <h5 class="text-truncate">
+        <mat-icon class="icon-align">directions_car</mat-icon>
+        {{rideData?.from?.city?.name}} &#10145; {{rideData?.to?.city?.name}}
+      </h5>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="4">
+      <h4>
+        <strong>
+          <p class="text-primary">{{rideData?.price}} zł</p>
+        </strong>
+      </h4>
+
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="3">
+      <h6 class="text-truncate">
+        <mat-icon class="icon-align">pin_drop</mat-icon>
+        <strong>{{rideData?.from?.city?.name}}</strong>,  {{rideData?.from?.placeInfo}}
+        <br/>
+        <mat-icon class="icon-align">pin_drop</mat-icon>
+        <strong>{{rideData?.to?.city?.name}}</strong>,  {{rideData?.to?.placeInfo}}
+      </h6>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="3" rowspan="1">
+      <h6 class="text-primary">
+        Ocena kierowcy:
+        <strong>{{userData?.rate || 0}}/5.0</strong>
+      </h6>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3" rowspan="1">
+      <h6 class="text-primary text-center">
+        Wolne miejsca:
+        <strong>{{rideData?.numberOfSeats - rideData?.bookedSeats}}/{{rideData?.numberOfSeats}}</strong>
+      </h6>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>

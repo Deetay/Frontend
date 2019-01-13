@@ -1,0 +1,30 @@
+.center {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  margin-top: 20px;
+  display: flex;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card {
+  width: 70%;
+  border-radius: 25px;
+  margin: auto;
+}
+
+mat-card:hover {
+  box-shadow: 0 10px 6px -6px black;
+}
+
+
+.hoverable-link {
+  cursor: pointer;
+}

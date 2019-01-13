@@ -1,0 +1,64 @@
+.profile-hover:hover {
+  cursor: pointer;
+}
+
+mat-card {
+  width: 70%;
+  border-radius: 25px;
+  margin: auto;
+}
+
+.align-left {
+  position: absolute;
+  text-align: left;
+}
+
+.show-on-hover button {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+mat-card:hover button {
+  display: block;
+  animation: fadeIn 0.25s;
+}
+
+mat-card:hover {
+  transform: scale(1.010);
+  transition: all 0.25s;
+}
+
+button {
+  transition: all 0.5s;
+}
+
+button:hover {
+  color: grey;
+}
+
+.border-bottom {
+  border-bottom: dashed gray 1px;
+}
+
+.icon-align {
+  position: relative;
+  top: 3px;
+}
+
+.align-vertically {
+  margin-top: 5px;
+}
+
+.stop {
+  margin-left: 30px;
+  color: #007bff;
+  font-size: small;
+}
+
+.stops {
+  margin-top: 5px;
+}

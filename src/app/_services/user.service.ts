@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { User } from '../_models';
+import {Ride} from '../_models/ride';
 
 @Injectable()
 export class UserService {
@@ -13,7 +14,7 @@ export class UserService {
   }
 
   getById(id: number) {
-    return this.http.get(`${environment.apiUrl}/user/` + id);
+    return this.http.get<User>(`${environment.apiUrl}/user/` + id);
   }
 
   register(user: User) {
@@ -23,5 +24,18 @@ export class UserService {
 
   delete(id: number) {
     return this.http.delete(`${environment.apiUrl}/users/` + id);
+  }
+
+  update(user: User, userId: number) {
+    return this.http.put<User>(`${environment.apiUrl}/user/edit/` + userId, user);
+  }
+
+  rateUser(userId: number, rate: number) {
+    return this.http.put(`${environment.apiUrl}/user/rate/${userId}?rate=${rate}`, {});
+  }
+
+  getUserRides(id: number) {
+    console.log(id);
+    return this.http.get<Ride[]>(`${environment.apiUrl}/rides/user/` + id);
   }
 }

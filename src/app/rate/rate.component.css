@@ -1,0 +1,15 @@
+mat-icon {
+  position: relative;
+  top: 4px;
+}
+
+.rated {
+  color: rgb(226, 226, 35);
+}
+
+.unrated {
+  color: gray;
+}
+.star:hover {
+  cursor: pointer;
+}

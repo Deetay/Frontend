@@ -1,0 +1,135 @@
+mat-card {
+  min-width: 800px;
+  border-radius: 25px;
+  opacity: 1;
+  background: white;
+  color: black;
+}
+
+mat-grid-tile .align-left {
+  position: absolute;
+  left: 5px;
+}
+
+.show-on-hover button {
+  display: inline;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+mat-card:hover button {
+  display: inline;
+  animation:
+    fadeOut 1s 0s 1,
+    fadeIn 1s 1s 1;
+}
+
+mat-card:hover {
+  box-shadow: 0 5px 4px -4px black;
+}
+
+button {
+  transition: all 5s;
+}
+
+button:hover {
+  color: dimgrey;
+
+}
+.profile-hover:hover {
+  cursor: pointer;
+}
+.bottom-border {
+  border-bottom: dashed gray 1px;
+}
+
+.icon-align {
+
+}
+mat-card {
+  width: 70%;
+  border-radius: 25px;
+  margin: auto;
+}
+.align-vertically {
+  margin-top: 5px;
+}
+
+p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p.smalltext {
+  color: black;
+  height: 10px;
+  line-height: 1.0em;
+  font-size: 1.0em;
+  text-align: left;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+.email{
+  margin-bottom: 0.6rem;
+}
+
+p.mediumtext {
+  color:black;
+  height: 16px;
+  line-height: 16px;
+  font-size: 1.6em;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+h6.mediumtext {
+  color: black;
+  height: 16px;
+  line-height: 16px;
+  font-size: 1.6em;
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.mat-icon.smallicon {
+  font-size: 14px;
+  height: 14px;
+  width: 14px;
+}
+
+.fontcolor-gray {
+  color: darkslategray;
+}
+
+.transparent-icon {
+  opacity: 0.0;
+}
+
+.bottom-border {
+  border-bottom: 1px dashed gray;
+}
+
+.top-border {
+  border-top: 1px dashed gray;
+}
+
+.right-border {
+  border-right: 1px dashed gray;
+}

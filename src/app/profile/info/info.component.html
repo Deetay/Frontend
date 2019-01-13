@@ -1,0 +1,60 @@
+<mat-card *ngIf="isDataReady">
+  <mat-grid-list cols="8" rows="11" rowHeight="40px">
+    <mat-grid-tile colspan="2" rowspan="3">
+      <img class="img-circle" *ngIf="sanitizedPhoto" [src]="sanitizedPhoto" width="100px" height="100px" />
+      <img class="img-circle" *ngIf="!sanitizedPhoto" src="../../../assets/avatar.svg" width="100px" height="100px" />
+    </mat-grid-tile>
+    <mat-grid-tile colspan="6" rowspan="2">
+      <h1>
+        {{user?.firstName}} {{user?.lastName}}
+      </h1>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="6" rowspan="1">
+      <h5 class="align-left">
+        <mat-icon>person</mat-icon>
+        {{userAge}} lat/a
+      </h5>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
+      <h5 class="text-primary">
+        Ocena:
+        <strong>{{user?.rate}}/5</strong>
+      </h5>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="6" rowspan="1">
+      <h5 class="align-left">
+        <mat-icon>mail_outline</mat-icon>
+        {{user?.email}}
+      </h5>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1">
+      <button *ngIf="!isHimself" mat-raised-button (click)="openRateWindow()">
+        Oceń użytkownika
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="6" rowspan="1">
+      <h5 class="align-left">
+        <mat-icon>phone</mat-icon>
+        {{user?.phone}}
+      </h5>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="2">
+      <!-- empty -->
+    </mat-grid-tile>
+    <mat-grid-tile colspan="6" rowspan="1">
+      <h5 class="align-left">
+        <mat-icon>directions_car</mat-icon>
+        {{user?.car}}
+      </h5>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="6" rowspan="1">
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="8" rowspan="1" class="top-border">
+      <h4 class="align-vertically"> O sobie: </h4>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="8" rowspan="3">
+      <h6>{{user?.description}}</h6>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>

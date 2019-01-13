@@ -1,24 +1,3 @@
-.app-toolbar {
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  position: fixed;
-  z-index: 2;
-
-;
-}
-.logobutton{
-  font-size: 1.5rem;
-}
-.logo {
-  width: 64px;
-  margin-right: 5px;
-
-}
-.example-icon {
-  padding: 0 14px;
-}
-
-.example-spacer {
-  flex: 1 1 auto;
+.xd{
+  width: 70%;
 }

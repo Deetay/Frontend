@@ -1,0 +1,22 @@
+<mat-toolbar class="app-toolbar" color="primary" [class.mat-elevation-z5]="!isActive" >
+  <mat-toolbar-row>
+    <span >
+       <a mat-flat-button class="logobutton" color="primary" routerLink=".">
+      <img class="logo" src="../../assets/button.png"> Let's share a ride
+         </a>
+    </span>
+    <span class="example-spacer"></span>
+    <div class="example-button-row">
+      <a mat-flat-button color="primary" routerLink=""><mat-icon>search</mat-icon>Wyszukaj przejazd</a>
+      <a mat-flat-button color="primary" *ngIf="loggedIn" routerLink="addride"><mat-icon>add</mat-icon> Dodaj przejazd</a>
+      <a mat-flat-button color="primary"  routerLink="signup" *ngIf="!loggedIn">Zarejestruj się</a>
+      <a mat-flat-button color="accent" routerLink="login" *ngIf="!loggedIn">Zaloguj się</a>
+      <button mat-button *ngIf="loggedIn" [matMenuTriggerFor]="menu"><mat-icon>person</mat-icon> {{userData.firstName}}</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="user/{{userData.userId}}">Profil</button>
+        <button mat-menu-item routerLink="profile/rides">Twoje przejazdy</button>
+        <button mat-menu-item (click)="logout()">Wyloguj sie</button>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

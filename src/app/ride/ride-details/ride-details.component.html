@@ -1,0 +1,110 @@
+<mat-card *ngIf="isDataReady">
+  <mat-grid-list cols="7" rowHeight="35px" gutterSize="0px">
+
+    <mat-grid-tile colspan="2" rowspan="4" class="right-border">
+      <a (click)="goToUserPage()" class="profile-hover">
+      <img class="img-circle" *ngIf="photo" [src]="photo" width="100px" height="100px" />
+      <img class="img-circle" *ngIf="!photo" src="../../../assets/avatar.svg" width="100px" height="100px" />
+      </a>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="3" rowspan="3" style="text-align: center;">
+      <h4>
+        Wolne miejsca:
+        <br/>
+        <strong class=" text-primary"> {{rideDetails?.numberOfSeats - rideDetails?.bookedSeats}} / {{rideDetails?.numberOfSeats}} </strong>
+      </h4>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2 " rowspan="3" >
+      <h4 style="text-align: center; ">
+        Cena:
+        <br/>
+        <strong class="text-primary "> {{rideDetails?.price}} zł</strong>
+      </h4>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2" rowspan="7 " class="top-border">
+      <div class="align-vertically">
+        <h5 class="fontcolor-gray ">Godzina wyjazdu </h5>
+
+        <p class="text-truncate bottom-border ">
+          <mat-icon class="icon-align" class="icon-align">alarm</mat-icon>
+          <span class="fontcolor-gray">
+            <strong class="text-info "> {{rideDetails?.date | date:'d MMMM H:mm':'':'pl'}} </strong>
+          </span>
+        </p>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="3" rowspan="7" class="top-border ">
+
+      <div class="align-vertically">
+        <h5 >Trasa </h5>
+        <h5 class="fontcolor-gray">Miejsce wyjazdu:</h5>
+        <p class="text-truncate bottom-border">
+          <mat-icon class="icon-align" class="smallicon "> location_on</mat-icon>
+          <span class="fontcolor-gray">
+            <strong class="text-info"> {{rideDetails?.from.city.name}}, {{rideDetails?.from.placeInfo}} </strong>
+          </span>
+        </p>
+        <h5 class="fontcolor-gray">Miejsce docelowe:</h5>
+        <p class="text-truncate bottom-border">
+          <mat-icon class="icon-align" class="smallicon"> location_on</mat-icon>
+          <span class="fontcolor-gray">
+            <strong class="text-info"> {{rideDetails?.to.city.name}}, {{rideDetails?.to.placeInfo}} </strong>
+          </span>
+        </p>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2" rowspan="3" style="text-align: center" class="right-border bottom-border">
+      <h4>
+        {{userData?.firstName}} {{userData?.lastName}}
+      </h4>
+    </mat-grid-tile>
+
+
+
+    <mat-grid-tile colspan="2" rowspan="2" class="right-border">
+      <h5 class="align-left">
+        <mat-icon class="icon-align">stars</mat-icon>
+        <strong>{{userData?.rate || 0}}/5.0</strong>
+      </h5>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2" rowspan="2" class="right-border">
+      <h5 class="align-left">
+        <mat-icon class="email">email</mat-icon> {{userData?.email}}
+      </h5>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="5" rowspan="2" class="top-border">
+      <div class="align-vertically">
+        <h4>Dodatkowe informacje</h4>
+        <p class="text-info"> {{rideDetails?.description}}</p>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2" rowspan="2" class="right-border">
+      <h5 class="align-left">
+        <mat-icon class="icon-align">phone</mat-icon> {{userData?.phone}}
+      </h5>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="5" rowspan="4">
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2" rowspan="3" class="right-border">
+      <h5 class="align-left">
+      <div class="align-left" class="show-on-hover">
+        <button *ngIf="!isOwner && canReserve()" mat-icon-button matTooltipShowDelay="100" matTooltip="Zarezerwuj" matTooltipPosition="above"
+                (click)="reserve()">
+          <mat-icon>content_paste</mat-icon>Zarezerwuj przejazd
+        </button>
+      </div>
+      </h5>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</mat-card>
