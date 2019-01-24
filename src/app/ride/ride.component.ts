@@ -18,12 +18,12 @@ export class RideComponent implements OnInit {
 
   @Input()
   rideData: Ride = new Ride();
-
+  deleted: boolean = false;
   userData: User;
   userId: number; //for convenience
   currentUser: number;
 
-  constructor(private userService: UserService, private router: Router, private sanitizer: DomSanitizer, private routeService: RideService, private authService: AuthenticationService) {
+  constructor(private userService: UserService, private router: Router, private sanitizer: DomSanitizer, private rideService: RideService, private authService: AuthenticationService) {
     this.currentUser = +this.authService.getCurrentUserId();
   }
 
@@ -39,6 +39,10 @@ export class RideComponent implements OnInit {
     else {
      // this.router.navigate(['']);
     }
+  }
+  deleteRide(){
+    this.rideService.delete(this.rideData.rideId).subscribe(_=>{this.deleted=true
+    console.log(this.deleted)});
   }
 
   redirectToRouteDetails() {
@@ -58,7 +62,7 @@ export class RideComponent implements OnInit {
   // }
 
   reserve() {
-    this.routeService.reserve(this.rideData.rideId, this.currentUser).subscribe(
+    this.rideService.reserve(this.rideData.rideId, this.currentUser).subscribe(
       () => {
         this.redirectToRouteDetails();
       },

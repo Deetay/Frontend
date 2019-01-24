@@ -1,3 +1,100 @@
-<p>
-  edit works!
-</p>
+<mat-card>
+  <form #form1="ngForm">
+    <mat-grid-list cols="4" rowHeight="35px" gutterSize="0px">
+
+      <mat-grid-tile rowspan="4">
+        <img class="img-circle" *ngIf="photo" [src]="photo" alt="" width="100px" height="100px" />
+        <img class="img-circle" *ngIf="!photo" src="../../../assets/avatar.svg" width="100px" height="100px" />
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="2" rowspan="2" class="right-border">
+        <h4>Dane osobowe</h4>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2">
+
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2">
+        <mat-form-field>
+          <input matInput [(ngModel)]="userModel.firstName" name="firstName" required #firstNameRef="ngModel" placeholder="Imię" />
+          <mat-error *ngIf="firstNameRef.invalid">Wpisz poprawne imię!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2" class="right-border">
+        <mat-form-field>
+          <input matInput [(ngModel)]="userModel.lastName" name="lastName" required #lastNameRef="ngModel" placeholder="Nazwisko" />
+          <mat-error *ngIf="lastNameRef.invalid">Wpisz poprawne nazwisko!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2">
+
+      </mat-grid-tile>
+
+      <mat-grid-tile rowspan="2">
+        <input hidden id="file" name="file" type="file" #fileInput placeholder="" class="file-input" (change)="onSelectFile($event)" />
+        <button mat-raised-button type="button">
+          <label class="pointer" for="file">Wybierz obraz</label>
+        </button>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2">
+        <mat-form-field>
+          <input matInput name="birthYear" [max]="today" [matDatepicker]="picker" placeholder="Data urodzenia" #dateRef="ngModel" [(ngModel)]="userModel.birthDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="dateRef.invalid">Wybierz datę!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2" class="right-border">
+        <mat-form-field>
+          <input matInput [(ngModel)]="userModel.phone" name="phone" required #phoneRef="ngModel" placeholder="Numer telefonu" pattern="^\+?[1-9]{1}[0-9]{3,14}$"
+          />
+          <mat-error *ngIf="phoneRef.invalid">Wpisz poprawny numer telefonu!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2">
+      </mat-grid-tile>
+
+      <mat-grid-tile rowspan="2">
+        <button mat-raised-button class="hoverable" type="button" (click)="upload()">
+          Zapisz zdjęcie
+        </button>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2">
+        <mat-form-field>
+          <input matInput [(ngModel)]="userModel.car" name="car" #carRef="ngModel" placeholder="Samochód" />
+          <mat-error *ngIf="carRef.invalid">Wpisz poprawną nazwę!</mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2" class="right-border">
+        <button mat-raised-button [disabled]="!form1.valid" (click)="updateUser()">
+          Zapisz dane
+        </button>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2">
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="3" rowspan="2" class="right-border">
+
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="1" rowspan="2">
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="4" rowspan="6" class="top-border">
+        <mat-form-field appearance="outline" style="width: 85% !important">
+          <textarea name="bio" matInput class=".textarea" [(ngModel)]="userModel.description" rows="4" placeholder="Coś o sobie "></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </form>
+</mat-card>

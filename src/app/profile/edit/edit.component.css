@@ -1,0 +1,33 @@
+mat-card {
+  width: 70%;
+  border-radius: 25px;
+  margin: auto;
+}
+
+mat-grid-tile .align-left {
+  position: absolute;
+  left: 5px;
+}
+
+mat-icon {
+  position: relative;
+  top: 3px;
+}
+
+.top-border {
+  border-top: 1px dashed gray;
+}
+
+
+mat-grid-tile .align-vertically {
+  position: absolute;
+  top: 10px;
+}
+
+mat-form-field {
+  width: 200px !important;
+}
+
+.pointer {
+  cursor: pointer;
+}

@@ -1,4 +1,5 @@
-<mat-card>
+<div *ngIf="!deleted">
+<mat-card >
   <mat-grid-list cols="8" rows="5" rowHeight="33px" gutterSize="0px">
     <mat-grid-tile colspan="3" rowspan="1">
       <div class="align-vertically">
@@ -24,6 +25,9 @@
         </button>
         <button mat-icon-button matTooltip="Szczegóły" matTooltipPosition="right" (click)="redirectToRouteDetails()">
           <mat-icon>info</mat-icon>
+        </button>
+        <button mat-icon-button *ngIf="userId == currentUser" matTooltip="Usuń przejazd" matTooltipPosition="right" (click)="deleteRide()">
+          <mat-icon>delete</mat-icon>
         </button>
       </div>
     </mat-grid-tile>
@@ -71,3 +75,4 @@
     </mat-grid-tile>
   </mat-grid-list>
 </mat-card>
+</div>

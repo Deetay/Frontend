@@ -37,13 +37,14 @@ export class RideService {
     return this.http.get<Ride>(this.url + '/' + id);
   }
 
+
   create(ride: Ride) {
     console.log(ride);
     return this.http.post(this.url+ '/add', ride);
   }
 
   delete(id: number) {
-    return this.http.delete(this.url + id);
+    return this.http.delete(`${this.url}/` + id);
   }
 
   getAll() {

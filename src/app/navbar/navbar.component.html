@@ -11,9 +11,9 @@
       <a mat-flat-button color="primary" *ngIf="loggedIn" routerLink="addride"><mat-icon>add</mat-icon> Dodaj przejazd</a>
       <a mat-flat-button color="primary"  routerLink="signup" *ngIf="!loggedIn">Zarejestruj się</a>
       <a mat-flat-button color="accent" routerLink="login" *ngIf="!loggedIn">Zaloguj się</a>
-      <button mat-button *ngIf="loggedIn" [matMenuTriggerFor]="menu"><mat-icon>person</mat-icon> {{userData.firstName}}</button>
+      <button mat-button *ngIf="loggedIn" [matMenuTriggerFor]="menu"><mat-icon>person</mat-icon> {{userData?.firstName}}</button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="user/{{userData.userId}}">Profil</button>
+        <button mat-menu-item routerLink="user/{{userData?.userId}}">Profil</button>
         <button mat-menu-item routerLink="profile/rides">Twoje przejazdy</button>
         <button mat-menu-item (click)="logout()">Wyloguj sie</button>
       </mat-menu>

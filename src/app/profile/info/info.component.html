@@ -1,8 +1,8 @@
 <mat-card *ngIf="isDataReady">
   <mat-grid-list cols="8" rows="11" rowHeight="40px">
     <mat-grid-tile colspan="2" rowspan="3">
-      <img class="img-circle" *ngIf="sanitizedPhoto" [src]="sanitizedPhoto" width="100px" height="100px" />
-      <img class="img-circle" *ngIf="!sanitizedPhoto" src="../../../assets/avatar.svg" width="100px" height="100px" />
+      <img class="img-circle" *ngIf="photo" [src]="photo" width="100px" height="100px" />
+      <img class="img-circle" *ngIf="!photo" src="../../../assets/avatar.svg" width="100px" height="100px" />
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="2">
       <h1>
@@ -30,6 +30,9 @@
     <mat-grid-tile colspan="2" rowspan="1">
       <button *ngIf="!isHimself" mat-raised-button (click)="openRateWindow()">
         Oceń użytkownika
+      </button>
+      <button mat-raised-button routerLink="/profile/edit" *ngIf="isHimself">
+        Edytuj profil
       </button>
     </mat-grid-tile>
     <mat-grid-tile colspan="6" rowspan="1">

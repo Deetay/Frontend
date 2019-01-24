@@ -13,7 +13,7 @@ import {RatingHelper} from '../../_helpers/ratinghelper';
 })
 export class InfoComponent {
 
-  sanitizedPhoto;
+  photo;
 
   user: User = new User();
 
@@ -32,8 +32,7 @@ export class InfoComponent {
               private router: Router, private userService: UserService,
               private sanitizer: DomSanitizer, private ratingHelper: RatingHelper, private authService: AuthenticationService) {
     this.route.params.subscribe(
-      param => this.userId = param.id,
-      error => this.router.navigate['home']
+      param => this.userId = param.id
     );
     this.userService.getById(this.userId).subscribe(user => {
       if (user != null) {
@@ -41,22 +40,21 @@ export class InfoComponent {
         this.user.userId = this.userId;
         this.isHimself = (authService.getCurrentUserId() == this.userId);
         this.userAge = this.calculateAge();
-        // this.userService.getPhoto(this.userId)
-        //   .subscribe(photo => {
-        //     let urlCreator = window.URL;
-        //     this.sanitizedPhoto = this.sanitizer.bypassSecurityTrustUrl(urlCreator.createObjectURL(photo));
-        //   })
+        this.userService.getPhoto(this.userId)
+          .subscribe(photo => {
+            this.photo = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(photo));
+
+          })
         this.isDataReady = true;
       }
-      else {
-        this.router.navigate['home'];
-      }
+
     });
   }
 
   openRateWindow() {
-    this.ratingHelper.open(this.sanitizedPhoto, this.user);
+    this.ratingHelper.open(this.photo, this.user);
   }
+
 
   calculateAge() {
     let newDate = new Date(this.user.birthDate);

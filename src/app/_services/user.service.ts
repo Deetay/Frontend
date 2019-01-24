@@ -4,6 +4,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../_models';
 import {Ride} from '../_models/ride';
+import {Observable} from 'rxjs/Observable';
+import {map, tap} from 'rxjs/operators';
 
 @Injectable()
 export class UserService {
@@ -27,6 +29,7 @@ export class UserService {
   }
 
   update(user: User, userId: number) {
+    console.log(JSON.stringify(user))
     return this.http.put<User>(`${environment.apiUrl}/user/edit/` + userId, user);
   }
 
@@ -38,4 +41,21 @@ export class UserService {
     console.log(id);
     return this.http.get<Ride[]>(`${environment.apiUrl}/rides/user/` + id);
   }
+
+  getPhoto(id: number): Observable<any> {
+
+    return this.http.get(`${environment.apiUrl}/user/photo/${id}`, { responseType: "blob", observe: "response" })
+      .pipe(
+        map(res => res.status === 204 ? null : res.body),
+        tap(data => {
+          if (data) {
+            console.log(data);
+          }
+        })
+      )
+  }
+  upload(formData: FormData, id: number) {
+    return this.http.post(`${environment.apiUrl}/user/addphoto/` + id, formData);
+  }
+
 }

@@ -3,3 +3,8 @@ mat-card {
   border-radius: 25px;
   margin: auto;
 }
+
+
+.top-border {
+  border-top: 1px dashed gray;
+}

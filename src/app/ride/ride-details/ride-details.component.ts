@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../_models';
 import {RideService} from '../../_services/ride.service';
 import {Ride} from '../../_models/ride';
-import {UserService} from '../../_services';
+import {AuthenticationService, UserService} from '../../_services';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {isNullOrUndefined} from 'util';
@@ -23,13 +23,14 @@ export class RideDetailsComponent implements OnInit {
   private rideId: number;
 
   isDataReady: boolean = false;
-  currentUserId: number;
+  currentUserId: number = this.authService.getCurrentUserId();
   isOwner: boolean = false;
 
   constructor(
     private rideService: RideService,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
+    private authService: AuthenticationService,
     private router: Router,
     private sanitizer: DomSanitizer
   ) {
@@ -45,7 +46,6 @@ export class RideDetailsComponent implements OnInit {
         this.userService.getById(this.rideDetails.ownerId).subscribe(
           data => {
             this.userData = data;
-            this.currentUserId = JSON.parse(localStorage.getItem('currentUser'));
             this.isOwner = (this.userData.userId == this.currentUserId);
             this.isDataReady = true;
           });
@@ -55,7 +55,7 @@ export class RideDetailsComponent implements OnInit {
   }
   canReserve() {
     return this.rideDetails.numberOfSeats - this.rideDetails.bookedSeats > 0
-      && (!isNullOrUndefined(this.rideDetails.passengers) && !this.rideDetails.passengers.includes(this.currentUserId));
+      && (!isNullOrUndefined(this.rideDetails.passengers) && !this.rideDetails.passengers.includes(this.currentUserId) && !this.isOwner) ;
   }
 
   reserve() {
